@@ -1,0 +1,21 @@
+[workspace]
+resolver = "2"
+members = [
+    "tower-identity",
+    "tower-session",
+]
+
+# TODO(MSRV 1.64)
+# [workspace.package]
+# edition = "2018"
+# rust-version = "1.60"
+
+[patch.crates-io]
+tower-identity = { path = "./tower-identity" }
+tower-session = { path = "./tower-session" }
+
+# uncomment to quickly test against local tower-web repo
+# tower-http = { path = "../actix-web/actix-http" }
+# tower-router = { path = "../actix-web/actix-router" }
+# tower-web = { path = "../actix-web" }
+# awc = { path = "../tower-web/awc" }

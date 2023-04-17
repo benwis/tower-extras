@@ -1,0 +1,59 @@
+[package]
+name = "tower-session"
+version = "0.7.2"
+authors = [
+  
+  "Ben Wishovich <ben@benw.is>",
+  "Nikolay Kim <fafhrd91@gmail.com>",
+  "Luca Palmieri <rust@lpalmieri.com>",
+]
+description = "Session management for Actix We"
+keywords = ["http", "tower", "hyper","axum", "web", "framework", "async", "session"]
+repository = "https://github.com/axum/actix-extras.git"
+license = "MIT OR Apache-2.0"
+edition = "2018"
+rust-version = "1.60"
+
+[package.metadata.docs.rs]
+rustdoc-args = ["--cfg", "docsrs"]
+all-features = true
+
+[features]
+default = []
+cookie-session = []
+redis-rs-session = ["redis", "rand"]
+redis-rs-tls-session = ["redis-rs-session", "redis/tokio-native-tls-comp"]
+
+[dependencies]
+# axum-service = "2"
+# axum-utils = "3"
+# axum-web = { version = "4", default-features = false, features = ["cookies", "secure-cookies"] }
+axum = "0.6.15"
+axum-extra = "0.7.3"
+
+anyhow = "1"
+async-trait = "0.1"
+derive_more = "0.99.7"
+rand = { version = "0.8", optional = true }
+serde = { version = "1" }
+serde_json = { version = "1" }
+tracing = { version = "0.1.30", default-features = false, features = ["log"] }
+
+# redis-rs-session
+redis = { version = "0.22", default-features = false, features = ["tokio-comp", "connection-manager"], optional = true }
+
+
+[dev-dependencies]
+tower-session = { path = ".", features = ["cookie-session", "redis-rs-session"] }
+# axum-test = "0.1.0-beta.10"
+# axum-web = { version = "4", default-features = false, features = ["cookies", "secure-cookies", "macros"] }
+env_logger = "0.10"
+log = "0.4"
+
+# [[example]]
+# name = "basic"
+# required-features = ["redis-actor-session"]
+
+# [[example]]
+# name = "authentication"
+# required-features = ["redis-actor-session"]
